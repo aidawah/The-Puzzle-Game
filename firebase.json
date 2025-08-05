@@ -12,15 +12,21 @@
       "port": 4000
     }
   },
-  "firestore": {
-    "rules": "firestore.rules"
-  },
+
   "hosting": {
-    "public": "public",
+    "public": "build",
+
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+    ],
+
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
     ]
   }
 }
