@@ -1,0 +1,16 @@
+{
+	"/": [
+		"src/routes/+page.ts"
+	],
+	"/create": [],
+	"/login": [],
+	"/my-puzzles": [
+		"src/routes/my-puzzles/+page.ts"
+	],
+	"/puzzles": [
+		"src/routes/puzzles/+page.ts"
+	],
+	"/puzzles/[id]": [
+		"src/routes/puzzles/[id]/+page.ts"
+	]
+}
