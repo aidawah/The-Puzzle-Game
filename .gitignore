@@ -1,0 +1,50 @@
+# Node dependencies
+/node_modules
+
+# Vite / SvelteKit build output
+/.svelte-kit
+/build
+/.output
+.vite
+
+# Local dev server cache
+/.vite
+
+# Production logs
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Environment files (never commit your secrets!)
+.env
+.env.*       # e.g. .env.local, .env.production
+!.env.example
+
+# Firebase emulators data & logs
+/firebase-debug.log
+/firestore-debug.log
+/firebase-debug.*.log
+/.firebase
+/.firebaserc.local.json  # if you use a local override
+/emulator-data/
+
+# IDE / OS files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# MacOS Finder folder settings
+.AppleDouble
+.LSOverride
+
+# Svelte-check
+.svelte-kit
+
+# Tailwind / PostCSS caches (if any)
+.cache
+.pnpm-store
+
+# Optional: ignore generated GitHub workflows until you merge them
+# /.github/workflows/firebase-hosting-*.yml
+

@@ -1,0 +1,7 @@
+/* src/app.css */
+@import 'tailwindcss';
+
+/* Make the whole page dark */
+body {
+	@apply bg-gray-900 text-gray-100;
+}

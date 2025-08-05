@@ -1,2 +1,5 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+.gitattributes
+
+/Users/macuser/HealthSpaces/The-Puzzle-Game/.gitattributes
