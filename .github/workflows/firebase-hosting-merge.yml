@@ -1,38 +1,36 @@
-name: Deploy to Firebase Hosting on merge  
+name: Deploy to Firebase Hosting on merge
+
 on:
   push:
-    branches: [main]
+    branches: [ main ]
 
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
-
     steps:
-      # 1) Pull down your code
+      # 1) pull down your code
       - uses: actions/checkout@v4
 
-      # 2) Install Node.js 20.x so firebase-tools@14 will work
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      # 2) Use Node.js 20.x (required by firebase-tools@14.x)
+      - uses: actions/setup-node@v4
         with:
-          node-version: '20.x'
+          node-version: '20'
 
-      # 3) Install PNPM (and your dependencies)
-      - name: Install pnpm
-        run: npm install -g pnpm
-
-      - name: Install dependencies
-        run: pnpm install
-
-      # 4) Build your SvelteKit app
-      - name: Build
-        run: pnpm run build
-
-      # 5) Deploy to Firebase Hosting live channel
-      - name: Deploy to Firebase Hosting (live)
-        uses: FirebaseExtended/action-hosting-deploy@v0
+      # 3) Install pnpm itself
+      - uses: pnpm/action-setup@v2
         with:
-          repoToken: ${{ secrets.GITHUB_TOKEN }}                            # GitHub token for status checks
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_PUZZLEGAME_81846 }}  
+          version: 8
+
+      # 4) Install your dependencies
+      - run: pnpm install --frozen-lockfile
+
+      # 5) Build your SvelteKit app
+      - run: pnpm run build
+
+      # 6) Deploy to your live channel
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_PUZZLEGAME_81846 }}
           projectId: puzzlegame-81846
           channelId: live

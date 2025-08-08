@@ -10,24 +10,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Use Node.js 18.x
-        uses: actions/setup-node@v4
+      # match production’s Node version
+      - uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
 
-      - name: Install PNPM
-        run: npm install -g pnpm@latest
-
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Build
-        run: pnpm run build
-
-      - name: Deploy to Firebase Hosting (preview channel)
-        uses: FirebaseExtended/action-hosting-deploy@v0
+      - uses: pnpm/action-setup@v2
         with:
-          repoToken: "${{ secrets.GITHUB_TOKEN }}"        # Auto-created by GitHub
-          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_PUZZLEGAME_81846 }}"
-          channelId: pr-${{ github.event.number }}        # deploy to PR-specific preview
+          version: 8
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run build
+
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_PUZZLEGAME_81846 }}
           projectId: puzzlegame-81846
+          channelId: pr-${{ github.event.number }}
