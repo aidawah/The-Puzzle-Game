@@ -36,6 +36,16 @@ jobs:
           VITE_FIREBASE_MEASUREMENT_ID=${{ secrets.VITE_FIREBASE_MEASUREMENT_ID }}
           EOF
 
+      # 4.5) Sanity check: show public pieces + lengths (no secrets printed)
+      - name: Sanity check .env (redacted)
+        run: |
+          echo "----- PUBLIC FIELDS -----"
+          grep -E 'VITE_FIREBASE_(PROJECT_ID|AUTH_DOMAIN|STORAGE_BUCKET)=' .env || true
+          echo "----- LENGTH CHECKS -----"
+          awk -F= '/^VITE_FIREBASE_API_KEY=/{printf("API_KEY length=%d\n", length($2))}' .env || true
+          awk -F= '/^VITE_FIREBASE_APP_ID=/{printf("APP_ID length=%d\n", length($2))}' .env || true
+          awk -F= '/^VITE_FIREBASE_MESSAGING_SENDER_ID=/{printf("MSG_SENDER_ID length=%d\n", length($2))}' .env || true
+
       # 5) Build your SvelteKit app (adapter-static writes to ./build)
       - run: pnpm run build
 
