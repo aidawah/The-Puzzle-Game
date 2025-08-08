@@ -7,28 +7,39 @@ on:
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
+
     steps:
-      # 1) pull down your code
+      # 1) Get your code
       - uses: actions/checkout@v4
 
-      # 2) Use Node.js 20.x (required by firebase-tools@14.x)
+      # 2) Node 20 for firebase-tools@14
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      # 3) Install pnpm itself
+      # 3) Install pnpm and deps
       - uses: pnpm/action-setup@v2
         with:
           version: 8
-
-      # 4) Install your dependencies
       - run: pnpm install --no-frozen-lockfile
 
-      # 5) Build your SvelteKit app
+      # 4) Write the .env file so Vite picks up your Firebase client config
+      - name: Generate .env for Vite
+        run: |
+          cat > .env <<'EOF'
+          VITE_FIREBASE_API_KEY=${{ secrets.VITE_FIREBASE_API_KEY }}
+          VITE_FIREBASE_AUTH_DOMAIN=${{ secrets.VITE_FIREBASE_AUTH_DOMAIN }}
+          VITE_FIREBASE_PROJECT_ID=${{ secrets.VITE_FIREBASE_PROJECT_ID }}
+          VITE_FIREBASE_STORAGE_BUCKET=${{ secrets.VITE_FIREBASE_STORAGE_BUCKET }}
+          VITE_FIREBASE_MESSAGING_SENDER_ID=${{ secrets.VITE_FIREBASE_MESSAGING_SENDER_ID }}
+          VITE_FIREBASE_APP_ID=${{ secrets.VITE_FIREBASE_APP_ID }}
+          VITE_FIREBASE_MEASUREMENT_ID=${{ secrets.VITE_FIREBASE_MEASUREMENT_ID }}
+          EOF
+
+      # 5) Build your SvelteKit app (adapter-static writes to ./build)
       - run: pnpm run build
 
-
-      # 6) Deploy to your live channel
+      # 6) Deploy the build/ folder to your live channel
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
