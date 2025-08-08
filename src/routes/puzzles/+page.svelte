@@ -10,7 +10,7 @@
   <div class="mx-auto max-w-4xl space-y-6">
     <!-- Header: stacks on mobile, inline on larger screens -->
     <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-4 sm:space-y-0">
-      <h1 class="text-2xl md:text-3xl font-bold">Custom Puzzles asdfasdf</h1>
+      <h1 class="text-2xl md:text-3xl font-bold">Custom Puzzles</h1>
       <button
         class="self-start sm:self-auto rounded bg-green-600 px-4 py-2 text-white hover:bg-green-500"
         on:click={() => goto('/create')}
