@@ -22,11 +22,11 @@ jobs:
           version: 8
 
       # 4) Install your dependencies
-      - run: pnpm install --frozen-lockfile
+      - run: pnpm install --no-frozen-lockfile
 
       # 5) Build your SvelteKit app
       - run: pnpm run build
-      
+
 
       # 6) Deploy to your live channel
       - uses: FirebaseExtended/action-hosting-deploy@v0

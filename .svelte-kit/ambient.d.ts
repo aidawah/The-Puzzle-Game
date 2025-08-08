@@ -89,7 +89,6 @@ declare module '$env/static/private' {
 	export const DISPLAY: string;
 	export const COLORTERM: string;
 	export const npm_node_execpath: string;
-	export const NODE_ENV: string;
 }
 
 /**
@@ -184,7 +183,6 @@ declare module '$env/dynamic/private' {
 		DISPLAY: string;
 		COLORTERM: string;
 		npm_node_execpath: string;
-		NODE_ENV: string;
 		[key: `PUBLIC_${string}`]: undefined;
 		[key: `${string}`]: string | undefined;
 	}
