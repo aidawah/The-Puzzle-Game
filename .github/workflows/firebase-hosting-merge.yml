@@ -26,6 +26,7 @@ jobs:
 
       # 5) Build your SvelteKit app
       - run: pnpm run build
+      
 
       # 6) Deploy to your live channel
       - uses: FirebaseExtended/action-hosting-deploy@v0
