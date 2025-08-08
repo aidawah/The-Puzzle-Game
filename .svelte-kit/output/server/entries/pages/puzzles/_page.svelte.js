@@ -3,7 +3,7 @@ import "../../../chunks/client.js";
 function _page($$payload, $$props) {
   push();
   let data = $$props["data"];
-  $$payload.out += `<main class="min-h-screen bg-gray-900 text-gray-100 p-4 md:p-8"><div class="mx-auto max-w-4xl space-y-6"><div class="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-4 sm:space-y-0"><h1 class="text-2xl md:text-3xl font-bold">Custom Puzzles</h1> <button class="self-start sm:self-auto rounded bg-green-600 px-4 py-2 text-white hover:bg-green-500">Create Puzzle</button></div> `;
+  $$payload.out += `<main class="min-h-screen bg-gray-900 text-gray-100 p-4 md:p-8"><div class="mx-auto max-w-4xl space-y-6"><div class="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-4 sm:space-y-0"><h1 class="text-2xl md:text-3xl font-bold">Custom Puzzlesasdfasfdsaf</h1> <button class="self-start sm:self-auto rounded bg-green-600 px-4 py-2 text-white hover:bg-green-500">Create Puzzle</button></div> `;
   if (data.puzzles.length === 0) {
     $$payload.out += "<!--[-->";
     $$payload.out += `<p>No puzzles yet. Start by creating one!</p>`;
