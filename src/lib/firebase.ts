@@ -64,7 +64,7 @@ const firebaseConfig = {
 
 if (!firebaseConfig.apiKey) throw new Error('Missing PUBLIC_FIREBASE_API_KEY');
 
-
+console.log("firebase config:", firebaseConfig)
 
 // ─── 2) Initialize App ────────────────────────────────────────────────────────
 const app = initializeApp(firebaseConfig);
