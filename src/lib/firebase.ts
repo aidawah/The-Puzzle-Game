@@ -31,17 +31,17 @@ import {
 // VITE_FIREBASE_PROJECT_ID=yourProjectId
 //
 // (you can also include messagingSenderId, appId, etc, if you use them)
-const firebaseConfigs = {
-  apiKey: env.PUBLIC_FIREBASE_API_KEY,
-  authDomain: env.PUBLIC_FIREBASE_AUTH_DOMAIN,
-  projectId: env.PUBLIC_FIREBASE_PROJECT_ID,
-  storageBucket: env.PUBLIC_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: env.PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: env.PUBLIC_FIREBASE_APP_ID,
-  measurementId: env.PUBLIC_FIREBASE_MEASUREMENT_ID,
-};
+// const firebaseConfigs = {
+//   apiKey: env.PUBLIC_FIREBASE_API_KEY,
+//   authDomain: env.PUBLIC_FIREBASE_AUTH_DOMAIN,
+//   projectId: env.PUBLIC_FIREBASE_PROJECT_ID,
+//   storageBucket: env.PUBLIC_FIREBASE_STORAGE_BUCKET,
+//   messagingSenderId: env.PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+//   appId: env.PUBLIC_FIREBASE_APP_ID,
+//   measurementId: env.PUBLIC_FIREBASE_MEASUREMENT_ID,
+// };
 
-console.log('firebase config', firebaseConfigs)
+// console.log('firebase config', firebaseConfigs)
 
 const firebaseConfig = {
   apiKey: "AIzaSyD09hdT1SPMIG4c2pJ5eD3yUgOk_ufvFCE",
