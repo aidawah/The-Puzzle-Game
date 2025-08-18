@@ -21,7 +21,7 @@ jobs:
       - uses: pnpm/action-setup@v2
         with:
           version: 8
-      - run: pnpm install --no-frozen-lockfile
+      - run: pnpm install --frozen-lockfile
 
       # 4) Write the .env file so Vite picks up your Firebase client config
       - name: Generate .env for Vite
