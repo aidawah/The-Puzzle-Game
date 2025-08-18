@@ -31,7 +31,7 @@ import {
 // VITE_FIREBASE_PROJECT_ID=yourProjectId
 //
 // (you can also include messagingSenderId, appId, etc, if you use them)
-const firebaseConfig = {
+const firebaseConfigs = {
   apiKey: env.PUBLIC_VITE_FIREBASE_API_KEY,
   authDomain: env.PUBLIC_VITE_FIREBASE_AUTH_DOMAIN,
   projectId: env.PUBLIC_VITE_FIREBASE_PROJECT_ID,
@@ -41,17 +41,17 @@ const firebaseConfig = {
   measurementId: env.PUBLIC_VITE_FIREBASE_MEASUREMENT_ID,
 };
 
-console.log('firebase config', firebaseConfig)
+console.log('firebase config', firebaseConfigs)
 
-// const firebaseConfig = {
-//   apiKey: "AIzaSyD09hdT1SPMIG4c2pJ5eD3yUgOk_ufvFCE",
-//   authDomain: "puzzlegame-81846.firebaseapp.com",
-//   projectId: "puzzlegame-81846",
-//   storageBucket: "puzzlegame-81846.firebasestorage.app",
-//   messagingSenderId: "618777530541",
-//   appId: "1:618777530541:web:67616b7373b13e2a573624",
-//   measurementId: "G-P0DH3M4KWX"
-// };
+const firebaseConfig = {
+  apiKey: "AIzaSyD09hdT1SPMIG4c2pJ5eD3yUgOk_ufvFCE",
+  authDomain: "puzzlegame-81846.firebaseapp.com",
+  projectId: "puzzlegame-81846",
+  storageBucket: "puzzlegame-81846.firebasestorage.app",
+  messagingSenderId: "618777530541",
+  appId: "1:618777530541:web:67616b7373b13e2a573624",
+  measurementId: "G-P0DH3M4KWX"
+};
 
 
 // ─── 2) Initialize App ────────────────────────────────────────────────────────
