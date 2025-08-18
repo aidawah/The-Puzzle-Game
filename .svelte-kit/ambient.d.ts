@@ -21,7 +21,7 @@
  * 
  * You can override `.env` values from the command line like so:
  * 
- * ```bash
+ * ```sh
  * MY_FEATURE_FLAG="enabled" npm run dev
  * ```
  */
@@ -101,13 +101,13 @@ declare module '$env/static/private' {
  * ```
  */
 declare module '$env/static/public' {
-	export const PUBLIC_VITE_FIREBASE_API_KEY: string;
-	export const PUBLIC_VITE_FIREBASE_AUTH_DOMAIN: string;
-	export const PUBLIC_VITE_FIREBASE_PROJECT_ID: string;
-	export const PUBLIC_VITE_FIREBASE_STORAGE_BUCKET: string;
-	export const PUBLIC_VITE_FIREBASE_MESSAGING_SENDER_ID: string;
-	export const PUBLIC_VITE_FIREBASE_APP_ID: string;
-	export const PUBLIC_VITE_FIREBASE_MEASUREMENT_ID: string;
+	export const PUBLIC_FIREBASE_API_KEY: string;
+	export const PUBLIC_FIREBASE_AUTH_DOMAIN: string;
+	export const PUBLIC_FIREBASE_PROJECT_ID: string;
+	export const PUBLIC_FIREBASE_STORAGE_BUCKET: string;
+	export const PUBLIC_FIREBASE_MESSAGING_SENDER_ID: string;
+	export const PUBLIC_FIREBASE_APP_ID: string;
+	export const PUBLIC_FIREBASE_MEASUREMENT_ID: string;
 }
 
 /**
@@ -122,7 +122,7 @@ declare module '$env/static/public' {
  * console.log(env.DEPLOYMENT_SPECIFIC_VARIABLE);
  * ```
  * 
- * > In `dev`, `$env/dynamic` always includes environment variables from `.env`. In `prod`, this behavior will depend on your adapter.
+ * > [!NOTE] In `dev`, `$env/dynamic` always includes environment variables from `.env`. In `prod`, this behavior will depend on your adapter.
  */
 declare module '$env/dynamic/private' {
 	export const env: {
@@ -208,13 +208,13 @@ declare module '$env/dynamic/private' {
  */
 declare module '$env/dynamic/public' {
 	export const env: {
-		PUBLIC_VITE_FIREBASE_API_KEY: string;
-		PUBLIC_VITE_FIREBASE_AUTH_DOMAIN: string;
-		PUBLIC_VITE_FIREBASE_PROJECT_ID: string;
-		PUBLIC_VITE_FIREBASE_STORAGE_BUCKET: string;
-		PUBLIC_VITE_FIREBASE_MESSAGING_SENDER_ID: string;
-		PUBLIC_VITE_FIREBASE_APP_ID: string;
-		PUBLIC_VITE_FIREBASE_MEASUREMENT_ID: string;
+		PUBLIC_FIREBASE_API_KEY: string;
+		PUBLIC_FIREBASE_AUTH_DOMAIN: string;
+		PUBLIC_FIREBASE_PROJECT_ID: string;
+		PUBLIC_FIREBASE_STORAGE_BUCKET: string;
+		PUBLIC_FIREBASE_MESSAGING_SENDER_ID: string;
+		PUBLIC_FIREBASE_APP_ID: string;
+		PUBLIC_FIREBASE_MEASUREMENT_ID: string;
 		[key: `PUBLIC_${string}`]: string | undefined;
 	}
 }
