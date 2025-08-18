@@ -101,7 +101,13 @@ declare module '$env/static/private' {
  * ```
  */
 declare module '$env/static/public' {
-	
+	export const PUBLIC_VITE_FIREBASE_API_KEY: string;
+	export const PUBLIC_VITE_FIREBASE_AUTH_DOMAIN: string;
+	export const PUBLIC_VITE_FIREBASE_PROJECT_ID: string;
+	export const PUBLIC_VITE_FIREBASE_STORAGE_BUCKET: string;
+	export const PUBLIC_VITE_FIREBASE_MESSAGING_SENDER_ID: string;
+	export const PUBLIC_VITE_FIREBASE_APP_ID: string;
+	export const PUBLIC_VITE_FIREBASE_MEASUREMENT_ID: string;
 }
 
 /**
@@ -202,6 +208,13 @@ declare module '$env/dynamic/private' {
  */
 declare module '$env/dynamic/public' {
 	export const env: {
+		PUBLIC_VITE_FIREBASE_API_KEY: string;
+		PUBLIC_VITE_FIREBASE_AUTH_DOMAIN: string;
+		PUBLIC_VITE_FIREBASE_PROJECT_ID: string;
+		PUBLIC_VITE_FIREBASE_STORAGE_BUCKET: string;
+		PUBLIC_VITE_FIREBASE_MESSAGING_SENDER_ID: string;
+		PUBLIC_VITE_FIREBASE_APP_ID: string;
+		PUBLIC_VITE_FIREBASE_MEASUREMENT_ID: string;
 		[key: `PUBLIC_${string}`]: string | undefined;
 	}
 }

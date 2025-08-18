@@ -41,7 +41,6 @@ const firebaseConfig = {
   measurementId: env.PUBLIC_VITE_FIREBASE_MEASUREMENT_ID,
 };
 
-
 // const firebaseConfig = {
 //   apiKey: "AIzaSyD09hdT1SPMIG4c2pJ5eD3yUgOk_ufvFCE",
 //   authDomain: "puzzlegame-81846.firebaseapp.com",
