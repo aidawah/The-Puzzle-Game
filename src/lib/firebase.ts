@@ -50,6 +50,9 @@ const firebaseConfig = {
   // measurementId: "G-P0DH3M4KWX"
 };
 
+if (!firebaseConfig.apiKey) throw new Error('Missing PUBLIC_FIREBASE_API_KEY');
+
+
 
 // ─── 2) Initialize App ────────────────────────────────────────────────────────
 const app = initializeApp(firebaseConfig);
@@ -136,4 +139,4 @@ const firebaseConfigs = {
   measurementId: env.PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
-console.log('firebase config testing', firebaseConfigs)
+console.log('firebase config testing 1', firebaseConfigs)
