@@ -5,30 +5,36 @@
 		<link rel="icon" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		
-		<link rel="modulepreload" href="/_app/immutable/entry/start.D9Oh-amK.js">
-		<link rel="modulepreload" href="/_app/immutable/chunks/8teCs59O.js">
-		<link rel="modulepreload" href="/_app/immutable/chunks/DfyscB-W.js">
-		<link rel="modulepreload" href="/_app/immutable/entry/app.CW5Voj5E.js">
+		<link rel="modulepreload" href="/_app/immutable/entry/start.BqAmcjpL.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/BqZN-OA-.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/BromKYUi.js">
+		<link rel="modulepreload" href="/_app/immutable/entry/app.BuQNnmlV.js">
 		<link rel="modulepreload" href="/_app/immutable/chunks/CWj6FrbW.js">
-		<link rel="modulepreload" href="/_app/immutable/chunks/Cm2BqtFm.js">
-		<link rel="modulepreload" href="/_app/immutable/chunks/Cpirqydb.js">
-		<link rel="modulepreload" href="/_app/immutable/chunks/Db9_vGeA.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/CMZlLvFG.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/rFQjRFAn.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/Dr_4v5UM.js">
+		<link rel="modulepreload" href="/_app/env.js">
 	</head>
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">
 			<script>
 				{
-					__sveltekit_ufnva5 = {
-						base: ""
+					__sveltekit_3l7box = {
+						base: "",
+						env: null
 					};
 
 					const element = document.currentScript.parentElement;
 
-					Promise.all([
-						import("/_app/immutable/entry/start.D9Oh-amK.js"),
-						import("/_app/immutable/entry/app.CW5Voj5E.js")
-					]).then(([kit, app]) => {
-						kit.start(app, element);
+					import("/_app/env.js").then(({ env }) => {
+						__sveltekit_3l7box.env = env;
+
+						Promise.all([
+							import("/_app/immutable/entry/start.BqAmcjpL.js"),
+							import("/_app/immutable/entry/app.BuQNnmlV.js")
+						]).then(([kit, app]) => {
+							kit.start(app, element);
+						});
 					});
 				}
 			</script>
