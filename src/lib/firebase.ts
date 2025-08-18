@@ -1,4 +1,5 @@
 // src/lib/firebase.ts
+import { env } from '$env/dynamic/public';
 import { initializeApp } from 'firebase/app';
 import {
   getFirestore,
@@ -30,25 +31,26 @@ import {
 // VITE_FIREBASE_PROJECT_ID=yourProjectId
 //
 // (you can also include messagingSenderId, appId, etc, if you use them)
-// const firebaseConfig = {
-//   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-//   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-//   projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-//   storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-//   messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-//   appId: import.meta.env.VITE_FIREBASE_APP_ID,
-//   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
-// };
-
 const firebaseConfig = {
-  apiKey: "AIzaSyD09hdT1SPMIG4c2pJ5eD3yUgOk_ufvFCE",
-  authDomain: "puzzlegame-81846.firebaseapp.com",
-  projectId: "puzzlegame-81846",
-  storageBucket: "puzzlegame-81846.firebasestorage.app",
-  messagingSenderId: "618777530541",
-  appId: "1:618777530541:web:67616b7373b13e2a573624",
-  measurementId: "G-P0DH3M4KWX"
+  apiKey: env.PUBLIC_VITE_FIREBASE_API_KEY,
+  authDomain: env.PUBLIC_VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: env.PUBLIC_VITE_FIREBASE_PROJECT_ID,
+  storageBucket: env.PUBLIC_VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: env.PUBLIC_VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: env.PUBLIC_VITE_FIREBASE_APP_ID,
+  measurementId: env.PUBLIC_VITE_FIREBASE_MEASUREMENT_ID,
 };
+
+
+// const firebaseConfig = {
+//   apiKey: "AIzaSyD09hdT1SPMIG4c2pJ5eD3yUgOk_ufvFCE",
+//   authDomain: "puzzlegame-81846.firebaseapp.com",
+//   projectId: "puzzlegame-81846",
+//   storageBucket: "puzzlegame-81846.firebasestorage.app",
+//   messagingSenderId: "618777530541",
+//   appId: "1:618777530541:web:67616b7373b13e2a573624",
+//   measurementId: "G-P0DH3M4KWX"
+// };
 
 
 // ─── 2) Initialize App ────────────────────────────────────────────────────────
