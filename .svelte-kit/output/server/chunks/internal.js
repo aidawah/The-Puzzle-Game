@@ -1,7 +1,16 @@
 import { H as HYDRATION_ERROR, g as get_next_sibling, d as define_property, s as set_active_reaction, a as set_active_effect, i as is_array, b as active_effect, c as active_reaction, e as init_operations, f as get_first_child, C as COMMENT_NODE, h as HYDRATION_START, j as HYDRATION_END, k as hydration_failed, l as clear_text_content, m as array_from, n as component_root, o as create_text, p as branch, q as push, r as component_context, t as pop, u as set, L as LEGACY_PROPS, v as get, w as flushSync, x as mutable_source } from "./utils2.js";
 import { r as render, p as push$1, s as setContext, a as pop$1 } from "./index2.js";
 import "./environment.js";
-import "./shared-server.js";
+let public_env = {};
+let safe_public_env = {};
+function set_private_env(environment) {
+}
+function set_public_env(environment) {
+  public_env = environment;
+}
+function set_safe_public_env(environment) {
+  safe_public_env = environment;
+}
 function hydration_mismatch(location) {
   {
     console.warn(`https://svelte.dev/e/hydration_mismatch`);
@@ -530,7 +539,7 @@ const options = {
 		<div class="error">
 			<span class="status">` + status + '</span>\n			<div class="message">\n				<h1>' + message + "</h1>\n			</div>\n		</div>\n	</body>\n</html>\n"
   },
-  version_hash: "3l7box"
+  version_hash: "1c7o4nv"
 };
 async function get_hooks() {
   let handle;
@@ -551,9 +560,14 @@ async function get_hooks() {
   };
 }
 export {
-  set_manifest as a,
+  set_private_env as a,
+  set_public_env as b,
+  set_safe_public_env as c,
+  set_read_implementation as d,
+  set_manifest as e,
   get_hooks as g,
   options as o,
+  public_env as p,
   read_implementation as r,
-  set_read_implementation as s
+  safe_public_env as s
 };

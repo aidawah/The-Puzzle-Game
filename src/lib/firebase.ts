@@ -1,5 +1,14 @@
 // src/lib/firebase.ts
-import { env } from '$env/dynamic/public';
+// import { env } from '$env/dynamic/public';
+import {
+  PUBLIC_FIREBASE_API_KEY,
+  PUBLIC_FIREBASE_AUTH_DOMAIN,
+  PUBLIC_FIREBASE_PROJECT_ID,
+  PUBLIC_FIREBASE_STORAGE_BUCKET,
+  PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  PUBLIC_FIREBASE_APP_ID,
+  PUBLIC_FIREBASE_MEASUREMENT_ID
+} from '$env/static/public';
 import { initializeApp } from 'firebase/app';
 import {
   getFirestore,
@@ -33,14 +42,24 @@ import {
 // (you can also include messagingSenderId, appId, etc, if you use them)
 
 
+// const firebaseConfig = {
+//   apiKey: "AIzaSyD09hdT1SPMIG4c2pJ5eD3yUgOk_ufvFCE",
+//   authDomain: "puzzlegame-81846.firebaseapp.com",
+//   projectId: "puzzlegame-81846",
+//   storageBucket: "puzzlegame-81846.firebasestorage.app",
+//   messagingSenderId: "618777530541",
+//   appId: "1:618777530541:web:67616b7373b13e2a573624",
+//   measurementId: "G-P0DH3M4KWX"
+// };
+
 const firebaseConfig = {
-  apiKey: "AIzaSyD09hdT1SPMIG4c2pJ5eD3yUgOk_ufvFCE",
-  authDomain: "puzzlegame-81846.firebaseapp.com",
-  projectId: "puzzlegame-81846",
-  storageBucket: "puzzlegame-81846.firebasestorage.app",
-  messagingSenderId: "618777530541",
-  appId: "1:618777530541:web:67616b7373b13e2a573624",
-  measurementId: "G-P0DH3M4KWX"
+  apiKey: PUBLIC_FIREBASE_API_KEY,
+  authDomain: PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: PUBLIC_FIREBASE_APP_ID,
+  measurementId: PUBLIC_FIREBASE_MEASUREMENT_ID
 };
 
 if (!firebaseConfig.apiKey) throw new Error('Missing PUBLIC_FIREBASE_API_KEY');
@@ -122,14 +141,15 @@ export async function fetchMyPuzzles(): Promise<Puzzle[]> {
 
 
 
-const firebaseConfigs = {
-  apiKey: env.PUBLIC_FIREBASE_API_KEY,
-  authDomain: env.PUBLIC_FIREBASE_AUTH_DOMAIN,
-  projectId: env.PUBLIC_FIREBASE_PROJECT_ID,
-  storageBucket: env.PUBLIC_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: env.PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: env.PUBLIC_FIREBASE_APP_ID,
-  measurementId: env.PUBLIC_FIREBASE_MEASUREMENT_ID,
-};
+// const firebaseConfigs = {
+//   apiKey: env.PUBLIC_FIREBASE_API_KEY,
+//   authDomain: env.PUBLIC_FIREBASE_AUTH_DOMAIN,
+//   projectId: env.PUBLIC_FIREBASE_PROJECT_ID,
+//   storageBucket: env.PUBLIC_FIREBASE_STORAGE_BUCKET,
+//   messagingSenderId: env.PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+//   appId: env.PUBLIC_FIREBASE_APP_ID,
+//   measurementId: env.PUBLIC_FIREBASE_MEASUREMENT_ID,
+// };
 
-console.log('firebase config testing 1', firebaseConfigs)
+// console.log('firebase config testing 1', firebaseConfigs)
+// console.log("the api key is classified as a ", typeof firebaseConfigs.apiKey)
