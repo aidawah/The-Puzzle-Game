@@ -32,25 +32,7 @@ import {
   type User
 } from 'firebase/auth';
 
-// ─── 1) Load config from .env ─────────────────────────────────────────────────
-// Create a `.env` (or `.env.local`) in your project root with:
-//
-// VITE_FIREBASE_API_KEY=yourApiKey
-// VITE_FIREBASE_AUTH_DOMAIN=yourAuthDomain
-// VITE_FIREBASE_PROJECT_ID=yourProjectId
-//
-// (you can also include messagingSenderId, appId, etc, if you use them)
 
-
-// const firebaseConfig = {
-//   apiKey: "AIzaSyD09hdT1SPMIG4c2pJ5eD3yUgOk_ufvFCE",
-//   authDomain: "puzzlegame-81846.firebaseapp.com",
-//   projectId: "puzzlegame-81846",
-//   storageBucket: "puzzlegame-81846.firebasestorage.app",
-//   messagingSenderId: "618777530541",
-//   appId: "1:618777530541:web:67616b7373b13e2a573624",
-//   measurementId: "G-P0DH3M4KWX"
-// };
 
 const firebaseConfig = {
   apiKey: PUBLIC_FIREBASE_API_KEY,
@@ -63,8 +45,6 @@ const firebaseConfig = {
 };
 
 if (!firebaseConfig.apiKey) throw new Error('Missing PUBLIC_FIREBASE_API_KEY');
-
-console.log("firebase config:", firebaseConfig)
 
 // ─── 2) Initialize App ────────────────────────────────────────────────────────
 const app = initializeApp(firebaseConfig);
