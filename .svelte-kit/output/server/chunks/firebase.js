@@ -18,7 +18,6 @@ const firebaseConfig = {
   measurementId: PUBLIC_FIREBASE_MEASUREMENT_ID
 };
 if (!firebaseConfig.apiKey) throw new Error("Missing PUBLIC_FIREBASE_API_KEY");
-console.log("firebase config:", firebaseConfig);
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);

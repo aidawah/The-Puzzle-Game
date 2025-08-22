@@ -11,8 +11,9 @@ export const load: PageLoad = async () => {
 
 	const puzzle = puzzles.length ? puzzles[Math.floor(Math.random() * puzzles.length)] : null
 
-	console.log('puzzle obj', puzzle)
-
 	return {puzzle}
 
 };
+
+
+console.log("hello")

@@ -1,4 +1,4 @@
-import { d as ensure_array_like, e as escape_html, j as attr, a as pop, p as push } from "../../../chunks/index2.js";
+import { d as ensure_array_like, e as escape_html, h as attr, a as pop, p as push } from "../../../chunks/index2.js";
 import { g as goto } from "../../../chunks/client.js";
 import "../../../chunks/firebase.js";
 import { u as user } from "../../../chunks/user.js";

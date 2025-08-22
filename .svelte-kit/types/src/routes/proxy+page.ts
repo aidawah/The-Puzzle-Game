@@ -6,8 +6,15 @@ import { fetchPuzzles } from '$lib/firebase';
 export const load = async () => {
 	const puzzles = await fetchPuzzles();
 	// choose the first (or apply logic for selecting)
-	return {
-		puzzle: puzzles[0] ?? null
-	};
+	// return {
+	// 	puzzle: puzzles[0] ?? null
+	// };
+
+	const puzzle = puzzles.length ? puzzles[Math.floor(Math.random() * puzzles.length)] : null
+
+	return {puzzle}
+
 };
-;null as any as PageLoad;
+
+
+console.log("hello");null as any as PageLoad;
