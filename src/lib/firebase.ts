@@ -18,6 +18,11 @@ import {
   addDoc,
   query,
   where,
+  setDoc,
+  getDoc,
+  deleteDoc,
+  doc,
+  serverTimestamp,
   type DocumentData,
   type QueryDocumentSnapshot
 } from 'firebase/firestore';
@@ -31,8 +36,6 @@ import {
   onAuthStateChanged,
   type User
 } from 'firebase/auth';
-
-
 
 const firebaseConfig = {
   apiKey: PUBLIC_FIREBASE_API_KEY,
@@ -62,7 +65,7 @@ export const auth = getAuth(app);
 
 // if (import.meta.env.DEV) {
 //   // point at emulator when running locally
-  // connectAuthEmulator(auth, 'http://localhost:9099');
+//   connectAuthEmulator(auth, 'http://localhost:9099');
 // }
 
 // ─── 5) Providers & helpers ──────────────────────────────────────────────────
@@ -116,4 +119,40 @@ export async function fetchMyPuzzles(): Promise<Puzzle[]> {
     id: d.id,
     ...(d.data() as Omit<Puzzle, 'id'>)
   }));
+}
+
+// ─── 6b) Progress types & helpers ────────────────────────────────────────────
+export type PuzzleProgress = {
+  tileOrder: string[];   // current board order by word
+  solvedOrder: number[]; // group indexes solved (0..3) in order
+  selected: string[];    // currently selected words (<=4)
+  updatedAt?: unknown;   // serverTimestamp()
+};
+
+function progressRef(puzzleId: string) {
+  const uid = auth.currentUser?.uid;
+  if (!uid) return null;
+  return doc(db, 'users', uid, 'progress', puzzleId);
+}
+
+export async function loadProgress(puzzleId: string): Promise<PuzzleProgress | null> {
+  const ref = progressRef(puzzleId);
+  if (!ref) return null;
+  const snap = await getDoc(ref);
+  return snap.exists() ? (snap.data() as PuzzleProgress) : null;
+}
+
+export async function saveProgress(
+  puzzleId: string,
+  p: Omit<PuzzleProgress, 'updatedAt'>
+) {
+  const ref = progressRef(puzzleId);
+  if (!ref) return;
+  await setDoc(ref, { ...p, updatedAt: serverTimestamp() }, { merge: true });
+}
+
+export async function clearProgress(puzzleId: string) {
+  const ref = progressRef(puzzleId);
+  if (!ref) return;
+  await deleteDoc(ref);
 }

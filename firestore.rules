@@ -1,12 +1,21 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // allow anyone to read the public puzzle list
+
+    // Public puzzle list
     match /puzzles/{puzzleId} {
       allow read;
-      // only authenticated users may create or update their own puzzles
+      // only authenticated users may create
       allow create: if request.auth != null;
-      allow update, delete: if request.auth.uid == resource.data.createdBy;
+      // only the owner may update/delete
+      allow update, delete: if request.auth != null
+                            && request.auth.uid == resource.data.createdBy;
+    }
+
+    // Per-user puzzle progress:
+    // /users/{uid}/progress/{puzzleId}
+    match /users/{uid}/progress/{puzzleId} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
     }
   }
 }
