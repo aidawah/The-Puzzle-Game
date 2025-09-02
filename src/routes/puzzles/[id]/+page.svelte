@@ -2,7 +2,7 @@
 <script lang="ts">
   import { onMount, onDestroy } from 'svelte';
   import { writable, get } from 'svelte/store';
-  import { goto } from '$app/navigation';
+  import { goto, beforeNavigate } from '$app/navigation';
   import type { Puzzle } from '$lib/firebase';
   import { onUserChanged, loadProgress, saveProgress } from '$lib/firebase';
 
@@ -42,40 +42,50 @@
     return [...locked, ...rest];
   }
 
-  async function persist() {
-    // No-op if not logged in (handled in helper)
-    await saveProgress(data.puzzle.id, {
-      tileOrder: get(tiles).map((t) => t.word),
-      solvedOrder: get(solvedOrder),
-      selected: Array.from(get(selected))
-    });
+  async function persist(where = '') {
+    try {
+      await saveProgress(data.puzzle.id, {
+        tileOrder: get(tiles).map((t) => t.word),
+        solvedOrder: get(solvedOrder),
+        selected: Array.from(get(selected))
+      });
+      // console.info('[progress] saved', where);
+    } catch (e) {
+      console.error('[progress] save failed', where, e);
+    }
   }
 
   async function tryRestore() {
-    const prog = await loadProgress(data.puzzle.id);
-    const base = baseTiles();
+    try {
+      const prog = await loadProgress(data.puzzle.id);
+      const base = baseTiles();
 
-    if (!prog) {
-      tiles.set(shuffle(base));
-      return;
+      if (!prog) {
+        tiles.set(shuffle(base));
+        return;
+      }
+
+      // Rebuild tile order using saved words (fallback to leftovers)
+      const byWord = new Map(base.map((t) => [t.word, t]));
+      const ordered: Tile[] = [];
+      for (const w of prog.tileOrder ?? []) {
+        const t = byWord.get(w);
+        if (t) ordered.push({ ...t });
+        byWord.delete(w);
+      }
+      // append any new/changed words
+      for (const t of byWord.values()) ordered.push({ ...t });
+
+      const solvedSet = new Set(prog.solvedOrder ?? []);
+      const withLocks = ordered.map((t) => (solvedSet.has(t.group) ? { ...t, locked: true } : t));
+
+      tiles.set(normalizeLockedFirst(withLocks));
+      solvedOrder.set(prog.solvedOrder ?? []);
+      selected.set(new Set(prog.selected ?? []));
+      // console.info('[progress] restored');
+    } catch (e) {
+      console.error('[progress] load failed', e);
     }
-
-    // Rebuild tile order using saved words (fallback to any leftovers)
-    const byWord = new Map(base.map((t) => [t.word, t]));
-    const ordered: Tile[] = [];
-    for (const w of prog.tileOrder ?? []) {
-      const t = byWord.get(w);
-      if (t) ordered.push({ ...t });
-      byWord.delete(w);
-    }
-    for (const t of byWord.values()) ordered.push({ ...t }); // append new/changed words
-
-    const solvedSet = new Set(prog.solvedOrder ?? []);
-    const withLocks = ordered.map((t) => (solvedSet.has(t.group) ? { ...t, locked: true } : t));
-
-    tiles.set(normalizeLockedFirst(withLocks));
-    solvedOrder.set(prog.solvedOrder ?? []);
-    selected.set(new Set(prog.selected ?? []));
   }
 
   onMount(() => {
@@ -90,13 +100,14 @@
     // Also attempt immediate restore (auth may already be ready)
     void tryRestore();
 
-    // Best-effort persist on tab close
-    const beforeUnload = () => { void persist(); };
+    // Persist on tab close and route change
+    const beforeUnload = () => { void persist('beforeunload'); };
     window.addEventListener('beforeunload', beforeUnload);
+    beforeNavigate(() => { void persist('beforeNavigate'); });
 
     onDestroy(() => {
       window.removeEventListener('beforeunload', beforeUnload);
-      void persist();
+      void persist('onDestroy');
       unsubAuth?.();
     });
   });
@@ -109,12 +120,12 @@
       else if (s.size < 4) s.add(word);
       return new Set(s);
     });
-    void persist();
+    void persist('toggle');
   }
 
   function clear() {
     selected.set(new Set());
-    void persist();
+    void persist('clear');
   }
 
   function reshuffleRemainder() {
@@ -122,7 +133,7 @@
     const locked = cur.filter((t) => t.locked);
     const rest = shuffle(cur.filter((t) => !t.locked));
     tiles.set([...locked, ...rest]);
-    void persist();
+    void persist('reshuffle');
   }
 
   function submit() {
@@ -148,7 +159,7 @@
       selected.set(new Set());
       tiles.update(normalizeLockedFirst);
 
-      void persist();
+      void persist('submit');
     } else {
       alert('❌ Try again.');
     }

@@ -56,7 +56,6 @@ const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 
 // if (import.meta.env.DEV) {
-//   // point at emulator when running locally
 //   connectFirestoreEmulator(db, 'localhost', 8080);
 // }
 
@@ -64,7 +63,6 @@ export const db = getFirestore(app);
 export const auth = getAuth(app);
 
 // if (import.meta.env.DEV) {
-//   // point at emulator when running locally
 //   connectAuthEmulator(auth, 'http://localhost:9099');
 // }
 
